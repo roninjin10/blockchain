@@ -1,0 +1,17 @@
+{
+  "name": "blockchain",
+  "version": "0.0.0",
+  "description": "A Typescript Blockchain implementation",
+  "main": "dist/index.js",
+  "author": "William Cory",
+  "license": "MIT",
+  "dependencies": {
+    "@types/express": "^4.16.0",
+    "bignumber.js": "^7.2.1",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "ramda": "^0.25.0",
+    "typescript": "^3.0.3"
+  }
+}
