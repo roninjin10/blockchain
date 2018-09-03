@@ -1,13 +1,13 @@
 import * as express from 'express'
-import {Express} from 'express'
+import {Express, Application} from 'express'
 import Promise from 'bluebird'
 
 export class App {
   private app: Express
   private PORT: number
 
-  constructor(port: number, router: express.Router) {
-    this.app = express()
+  constructor(port: number, app: Application, router: express.Router) {
+    this.app = app
     this.PORT = port
 
     this.app.use(router)

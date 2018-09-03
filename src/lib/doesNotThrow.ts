@@ -1,6 +1,6 @@
-export const doesNotThrow = (f: Function, args: any[]): boolean => {
+export const doesNotThrow = (f: Function): boolean => {
   try {
-    f(...args)
+    f()
     return true
   } catch(e) {
     return false

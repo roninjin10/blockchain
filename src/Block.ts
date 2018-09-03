@@ -39,7 +39,7 @@ export class Block implements IBlock {
       solution: randomString(),
       verify: false,
     })
-    return doesNotThrow(Block.verifyBlock, [guess])
+    return doesNotThrow(() => Block.verifyBlock(guess))
       ? guess
       : Block.mineBlock(b)
   }
@@ -73,7 +73,7 @@ export class Block implements IBlock {
   }
 
   public isValid = (): boolean =>
-    doesNotThrow(Block.verifyBlock, [this])
+    doesNotThrow(() => Block.verifyBlock(this))
 
   public mine = (): Block =>
     this.isValid()
