@@ -1,9 +1,9 @@
 import * as express from 'express'
-import {Express, Application} from 'express'
+import {Application} from 'express'
 import Promise from 'bluebird'
 
 export class App {
-  private app: Express
+  private app: Application
   private PORT: number
 
   constructor(port: number, app: Application, router: express.Router) {
