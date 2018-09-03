@@ -32,15 +32,15 @@ export class Block implements IBlock {
     return b
   }
 
-  static mineBlock = (b: IBlock): Block => {
-    try {
-      return new Block ({
+  static mineBlock = async (b: IBlock): Promise<Block> => {
+    while (true) {
+      const block = new Block ({
         data: b.DATA,
         prevBlock: b.PREV_BLOCK,
         solution: randomString(),
+        verify: false,
       })
-    } catch (e) {
-      return Block.mineBlock(b)
+      if (await block.isValid()) return block
     }
   }
 
@@ -64,8 +64,8 @@ export class Block implements IBlock {
   public isValid = (): boolean =>
     doesNotThrow(() => Block.verifyBlock(this))
 
-  public mine = (): Block =>
+  public mine = async (): Promise<Block> =>
     this.isValid()
       ? this
-      : Block.mineBlock(this)
+      : await Block.mineBlock(this)
 }
