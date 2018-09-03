@@ -33,15 +33,15 @@ export class Block implements IBlock {
   }
 
   static mineBlock = (b: IBlock): Block => {
-    const guess = new Block({
-      data: b.DATA,
-      prevBlock: b.PREV_BLOCK,
-      solution: randomString(),
-      verify: false,
-    })
-    return doesNotThrow(() => Block.verifyBlock(guess))
-      ? guess
-      : Block.mineBlock(b)
+    try {
+      return new Block ({
+        data: b.DATA,
+        prevBlock: b.PREV_BLOCK,
+        solution: randomString(),
+      })
+    } catch (e) {
+      return Block.mineBlock(b)
+    }
   }
 
   private _BLOCK: IBlock
@@ -56,21 +56,10 @@ export class Block implements IBlock {
     if (verify) Block.verifyBlock(this)
   }
 
-  get DATA() {
-    return this._BLOCK.DATA
-  }
-
-  get NONCE() {
-    return this._BLOCK.NONCE
-  }
-
-  get PREV_BLOCK() {
-    return this._BLOCK.PREV_BLOCK
-  }
-
-  get SOLUTION() {
-    return this._BLOCK.SOLUTION
-  }
+  get DATA() {return this._BLOCK.DATA}
+  get NONCE() {return this._BLOCK.NONCE}
+  get PREV_BLOCK() {return this._BLOCK.PREV_BLOCK}
+  get SOLUTION() {return this._BLOCK.SOLUTION}
 
   public isValid = (): boolean =>
     doesNotThrow(() => Block.verifyBlock(this))
